@@ -1,11 +1,14 @@
-FROM debian:buster
+FROM	debian:buster
 
-WORKDIR .
+COPY	srcs .
 
-COPY . srcs
+WORKDIR	.
 
-RUN	apt-get update && apt-get install \
+RUN	apt-get update -y && apt-get install -y \
+bash \
+sudo \
 nginx \
+openssl \
 wget \
 mariadb-server \
 php-fpm \
@@ -17,5 +20,13 @@ php-curl \
 php-gd \
 php-intl
 
+EXPOSE	80
+EXPOSE	443
 
-ENTRYPOINT	["bash", "srcs/mysh.sh"]
+ENTRYPOINT	["bash", "mysh.sh"]
+
+# docker build -t myserver .
+# docker run --name=myserver -p 80:80 -p 443:443 -it --rm myserver
+# docker exec -it myserver {COMMAND}
+
+# docker exec -it myserver /bin/bash

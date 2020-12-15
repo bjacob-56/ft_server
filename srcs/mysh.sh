@@ -1,43 +1,55 @@
+# Questions thallard
+# 
+# 
+# 
+# 
+# 
+# 
 
 
 # Mysql
-sudo mysql_secure_installation
+service mysql start
 sudo mariadb < mysql.sql
 ##
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+# sudo openssl dhparam -out /etc/nginx/dhparam.pem 4096
 
 # Configure nginx
 sudo mkdir /var/www/localhost
 sudo chown -R $USER:$USER /var/www/localhost
-sudo cp my_config /etc/nginx/sites-available/localhost # fichier my_config a completer
+sudo cp myconfig_autoindex_on /etc/nginx/sites-available/localhost
 sudo ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 ##
 
-service nginx start # a mettre au debut ?
-#/etc/init.d/php7.3-fpm start
+service nginx start
+/etc/init.d/php7.3-fpm start
 
 # Connect mariadb with php
-sudo cp config.php /var/www/localhost # a confirmer
+sudo cp test.php /var/www/localhost # a confirmer
 ##
 
 # Install Phpmyadmin
 sudo wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 sudo tar -zxvf phpMyAdmin-4.9.0.1-all-languages.tar.gz
-sudo mv phpMyAdmin-4.9.0.1-all-languages phpMyAdmin
-sudo mv phpMyAdmin /var/www/localhost
-#sudo cp -pr /usr/share/phpMyAdmin/config.sample.inc.php /usr/share/phpMyAdmin/config.inc.php
-#sudo cat /usr/share/phpMyAdmin/config.sample.inc.php
-# configuration file a editer ?
+sudo rm phpMyAdmin-4.9.0.1-all-languages.tar.gz
+sudo mv phpMyAdmin-4.9.0.1-all-languages phpmyadmin
+sudo mv phpmyadmin /var/www/localhost
+
+sudo cp -pr config.inc.php /var/www/localhost/phpmyadmin
+sudo rm -f config.inc.php
+sudo rm -f /var/www/localhost/phpmyadmin/config.sample.inc.php
 
 
 # Install Wordpress
 sudo wget http://fr.wordpress.org/latest-fr_FR.tar.gz
 sudo tar -xzvf latest-fr_FR.tar.gz
-sudo mv wordpress /var/www/localhost
+sudo mv wordpress/* /var/www/localhost
 sudo rm latest-fr_FR.tar.gz
-sudo rm -f /var/www/localhost/wordpress/wp-config
-sudo cp wp-config /var/www/localhost/wordpress
-# fichier wp_config.php a creer en se connectant
+sudo rm -f /var/www/localhost/wp-config-sample.php
+sudo mv wp-config.php /var/www/localhost/
 
-sudo adduser wordpress
-sudo chmod -R o-rwx /var/www/localhost/wordpress
+#sudo adduser wordpress
+#sudo chmod -R o-rwx /var/www/localhost/wordpress
 
+tail -f /var/log/nginx/access.log /var/log/nginx/error.log
