@@ -1,9 +1,9 @@
-# Questions thallard
+# Questions 
 # 
 # besoin de rentrer a chaque fois les infos pour le SSL ?
 # en https autoindex off : acces refusé --> normal ou pas ?
 # 
-# 
+# redirection vers 443 
 # 
 
 
@@ -12,8 +12,10 @@ service mysql start
 sudo mariadb < mysql.sql
 ##
 
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
-# sudo openssl dhparam -out /etc/nginx/dhparam.pem 4096
+# openssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=a/L=a/O=a/OU=a/CN=latest"
+#sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+##
 
 # Configure nginx
 sudo mkdir /var/www/localhost
@@ -26,7 +28,7 @@ service nginx start
 /etc/init.d/php7.3-fpm start
 
 # Connect mariadb with php
-sudo cp test.php /var/www/localhost # a confirmer
+# sudo cp test.php /var/www/localhost # a confirmer
 ##
 
 # Install Phpmyadmin
