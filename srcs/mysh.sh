@@ -14,13 +14,12 @@ sudo mariadb < mysql.sql
 
 # openssl
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=a/L=a/O=a/OU=a/CN=latest"
-#sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 ##
 
 # Configure nginx
 sudo mkdir /var/www/localhost
 sudo chown -R $USER:$USER /var/www/localhost
-sudo cp myconfig_autoindex_on /etc/nginx/sites-available/localhost
+sudo cp myconfig_autoindex_off /etc/nginx/sites-available/localhost
 sudo ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 ##
 
