@@ -4,7 +4,7 @@ sudo mariadb < mysql.sql
 ##
 
 # openssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=a/L=a/O=a/OU=a/CN=latest"
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=US/ST=a/L=a/O=a/OU=a/CN=localhost"
 ##
 
 # Configure nginx

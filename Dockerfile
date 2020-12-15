@@ -27,6 +27,4 @@ ENTRYPOINT	["bash", "init_server.sh"]
 
 # docker build -t myserver .
 # docker run --name=myserver -p 80:80 -p 443:443 -it --rm myserver
-# docker exec -it myserver {COMMAND}
-
 # docker exec -it myserver /bin/bash
