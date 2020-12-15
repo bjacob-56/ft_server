@@ -23,7 +23,7 @@ php-intl
 EXPOSE	80
 EXPOSE	443
 
-ENTRYPOINT	["bash", "mysh.sh"]
+ENTRYPOINT	["bash", "init_server.sh"]
 
 # docker build -t myserver .
 # docker run --name=myserver -p 80:80 -p 443:443 -it --rm myserver

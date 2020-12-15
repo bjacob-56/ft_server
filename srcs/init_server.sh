@@ -1,12 +1,3 @@
-# Questions 
-# 
-# besoin de rentrer a chaque fois les infos pour le SSL ?
-# en https autoindex off : acces refusé --> normal ou pas ?
-# 
-# redirection vers 443 
-# 
-
-
 # Mysql
 service mysql start
 sudo mariadb < mysql.sql
@@ -23,11 +14,9 @@ sudo cp myconfig_autoindex_off /etc/nginx/sites-available/localhost
 sudo ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 ##
 
+# Start nginx
 service nginx start
 /etc/init.d/php7.3-fpm start
-
-# Connect mariadb with php
-# sudo cp test.php /var/www/localhost # a confirmer
 ##
 
 # Install Phpmyadmin
@@ -40,7 +29,7 @@ sudo mv phpmyadmin /var/www/localhost
 sudo cp -pr config.inc.php /var/www/localhost/phpmyadmin
 sudo rm -f config.inc.php
 sudo rm -f /var/www/localhost/phpmyadmin/config.sample.inc.php
-
+##
 
 # Install Wordpress
 sudo wget http://fr.wordpress.org/latest-fr_FR.tar.gz
@@ -49,8 +38,6 @@ sudo mv wordpress/* /var/www/localhost
 sudo rm latest-fr_FR.tar.gz
 sudo rm -f /var/www/localhost/wp-config-sample.php
 sudo mv wp-config.php /var/www/localhost/
-
-#sudo adduser wordpress
-#sudo chmod -R o-rwx /var/www/localhost/wordpress
+##
 
 tail -f /var/log/nginx/access.log /var/log/nginx/error.log
