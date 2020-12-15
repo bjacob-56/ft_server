@@ -1,7 +1,7 @@
 # Questions thallard
 # 
-# 
-# 
+# besoin de rentrer a chaque fois les infos pour le SSL ?
+# en https autoindex off : acces refusé --> normal ou pas ?
 # 
 # 
 # 
